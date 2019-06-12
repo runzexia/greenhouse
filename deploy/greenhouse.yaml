@@ -29,25 +29,11 @@ spec:
         - name: CACHE_PUBLIC_EXPIRATION
           value: 3d
         image: docker.io/runzexia/greenhouse:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          timeoutSeconds: 10
-          failureThreshold: 30
-          periodSeconds: 5
         imagePullPolicy: Always
         name: ks-sample
         ports:
         - containerPort: 8080
           protocol: TCP
-        resources:
-          limits:
-            cpu: 200m
-            memory: 500Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
