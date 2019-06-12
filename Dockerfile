@@ -1,7 +1,6 @@
-FROM java:openjdk-6
+FROM tomcat:7.0.64-jre7
 
 WORKDIR /home
 
-COPY target/*.jar /home
+COPY target/*.war /usr/local/tomcat/webapps/
 
-ENTRYPOINT java -jar *.jar
