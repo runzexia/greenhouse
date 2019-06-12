@@ -23,7 +23,7 @@ spec:
       value: ${env.BRANCH_NAME}
     - name: _JAVA_OPTIONS
       value: -Xmx300M
-    image: maven:3.2.5-jdk-6
+    image: maven:3.6.1-jdk-7-alpine
     resources:
       limits:
         memory: 1500Mi
