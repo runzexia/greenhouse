@@ -47,6 +47,7 @@ spec:
             stage ('checkout scm') {
                 steps {
                     checkout(scm)
+                    sh 'cat hello'
                 }
             }
 
