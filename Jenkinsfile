@@ -15,13 +15,6 @@ pipeline {
                 }
             }
 
-            stage ('unit test') {
-                steps {
-                   container ('maven') {
-                      sh 'mvn clean test'
-                    }
-                }
-            }
              stage ('build & push') {
                  steps {
                      container ('maven') {
@@ -33,6 +26,15 @@ pipeline {
                          }
                      }
                  }
+             }
+             stage('deploy to dev') {
+               when{
+                 branch 'master'
+               }
+               steps {
+                 input(id: 'deploy-to-dev', message: 'deploy to dev?')
+                 kubernetesDeploy(configs: 'deploy/**', enableConfigSubstitution: true, kubeconfigId: "demo-kubeconfig")
+               }
              }
       }
 }
