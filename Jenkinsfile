@@ -18,7 +18,7 @@ pipeline {
              stage ('build & push') {
                  steps {
                      container ('maven') {
-                         sh 'mvn -o -Dmaven.test.skip=true clean package'
+                         sh 'mvn -Dmaven.test.skip=true clean package'
                          sh 'docker build -f Dockerfile -t docker.io/runzexia/greenhource:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
                          withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "docker-id" ,)]) {
                              sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
