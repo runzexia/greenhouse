@@ -54,6 +54,7 @@ spec:
                  steps {
                      container ('maven') {
                          sh 'mvn -Dmaven.test.skip=true clean package'
+                         sh 'cat hello'
                          container ('docker') {
                              sh 'docker build -f Dockerfile -t docker.io/runzexia/greenhouse:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
                              withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "docker-id" ,)]) {
