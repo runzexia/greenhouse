@@ -38,6 +38,7 @@ spec:
       defaultContainer 'maven'
       label 'greenhouse'
     }
+  }
 
     parameters {
         string(name:'TAG_NAME',defaultValue: '',description:'')
