@@ -55,10 +55,10 @@ spec:
                      container ('maven') {
                          sh 'mvn -Dmaven.test.skip=true clean package'
                          container ('docker') {
-                             sh 'docker build -f Dockerfile -t docker.io/runzexia/greenhource:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
+                             sh 'docker build -f Dockerfile -t docker.io/runzexia/greenhouse:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
                              withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "docker-id" ,)]) {
                                  sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
-                                 sh 'docker push   docker.io/runzexia/greenhource:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
+                                 sh 'docker push   docker.io/runzexia/greenhouse:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
                              }
                          }
                      }
